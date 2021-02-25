@@ -1,0 +1,10 @@
+# Ignore
+/*
+
+# Except
+!.gitignore
+!.github
+!assets
+!index.html
+!LICENSE
+!README.md
