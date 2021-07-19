@@ -1,0 +1,10 @@
+# Ignore
+/*
+
+# Except
+!.gitignore
+!assets
+!errors
+!favicon.ico
+!index.html
+!robots.txt

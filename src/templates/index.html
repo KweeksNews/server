@@ -14,39 +14,30 @@
   <meta property="og:title" content="Server 1 | KweeksNews Network">
   <meta property="og:description" content="Server 1 KweeksNews Network.">
   <meta property="og:site_name" content="KweeksNews Network">
-  <meta property="og:image" content="https://network.kweeksnews.com/assets/images/kweeksnet-square.png">
+  <meta property="og:image" content="https://network.kweeksnews.com/assets/images/kweeksnews-network-square.png">
   <meta property="og:image:width" content="700">
   <meta property="og:image:height" content="495">
   <meta property="og:ttl" content="345600">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://network.kweeksnews.com/assets/images/kweeksnet-square.png">
+  <meta name="twitter:image" content="https://network.kweeksnews.com/assets/images/kweeksnews-network-square.png">
   <meta name="twitter:creator" content="@kweeksnews">
   <meta name="twitter:site" content="@kweeksnews">
   <link rel="apple-touch-icon" sizes="180x180" href="https://network.kweeksnews.com/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://network.kweeksnews.com/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://network.kweeksnews.com/favicon-16x16.png">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" as="style">
-  <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" as="style">
-  <link rel="preload" href="/assets/css/style.css" as="style">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-    crossorigin="anonymous" as="script">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-    crossorigin="anonymous"></script>
 </head>
 
 <body>
   <main>
     <section id="left">
-      <div class="branding">
-        <a href="/"><img src="https://network.kweeksnews.com/assets/images/kweeksnet.svg" alt="KweeksNet" title="KweeksNet"></a>
-        <p>Server 1</p>
-      </div>
-      <div class="menu__wrapper" id="nav_menu">
+      <a href="/"><img class="lazyload" data-src="https://network.kweeksnews.com/assets/img/kweeksnews-network.svg" alt="KweeksNews Network" title="KweeksNews Network"></a>
+      <p>Server 1</p>
+      <nav>
         <button class="floatmenu" aria-label="Menu">
           <svg viewBox="0 0 20 20" fill="currentColor" class="icon__open">
             <path fill-rule="evenodd"
@@ -59,22 +50,27 @@
               clip-rule="evenodd"></path>
           </svg>
         </button>
-        <ul class="menu">
-          <li><a href="https://network.kweeksnews.com/" target="_blank"><i class="material-icons">public</i>
-              Network</a></li>
-          <li><a href="https://status.kweeksnews.com/" target="_blank"><i class="material-icons">insert_chart</i>
-              Status</a></li>
+        <ul class="nav__list">
+          <li>
+            <a href="https://network.kweeksnews.com/" target="_blank">
+              <i class="material-icons">public</i>Network
+            </a>
+          </li>
+          <li>
+            <a href="https://status.kweeksnews.com/" target="_blank">
+              <i class="material-icons">insert_chart</i>Status
+            </a>
+          </li>
         </ul>
-      </div>
+      </nav>
     </section>
     <section id="right">
-      <img src="/assets/images/server.svg" alt="Server">
+      <img class="lazyload" data-src="https://network.kweeksnews.com/assets/img/server.svg" alt="Server">
     </section>
   </main>
   <footer>
-    <p>&copy; <span id="year"></span> <span class="marking">KweeksNews Network</span>. All Rights Reserved.</p>
+    <p>&copy; <span class="year"></span> <span class="branding">KweeksNews Network</span>. Some Rights Reserved.</p>
   </footer>
-  <script defer src="/assets/js/script.js"></script>
 </body>
 
 </html>
