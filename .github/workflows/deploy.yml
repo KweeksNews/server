@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-gh-pages:
+    name: Deploy to Server 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2.3.4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: "14"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.SERVER1_SSH_KEY }}
+
+      - name: Add server 1 host key
+        run: ssh-keyscan server1.kweeksnews.com >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: |
+          cd ${{ github.workspace }}/dist
+          git config --global user.email "admin@kweeksnews.com"
+          git config --global user.name "KweeksDev"
+          git init
+          git add .
+          git commit -m "${{ github.event.head_commit.message }}"
+          git push -u ssh://kweeksne@server1.kweeksnews.com/home/kweeksne/public_html0 master:master -f
