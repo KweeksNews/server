@@ -12,6 +12,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "array-callback-return": 0,
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -19,7 +20,6 @@
           "webpack.*.js"
         ]
       }
-    ],
-    "array-callback-return": 0
+    ]
   }
 }
