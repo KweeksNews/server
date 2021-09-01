@@ -5,8 +5,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    reviewers:
+      - "KweeksNews/webmaster"
 
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
+    reviewers:
+      - "KweeksNews/webmaster"

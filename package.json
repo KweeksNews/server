@@ -5,7 +5,7 @@
   "scripts": {
     "start:dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "lint": "eslint --fix ./src"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "author": "KweeksDev <admin@kweeksnews.com>",
   "license": "GPL-3.0-or-later",

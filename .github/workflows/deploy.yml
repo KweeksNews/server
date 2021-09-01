@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  deploy-gh-pages:
+  deploy-server-1:
     name: Deploy to Server 1
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
 
-      - name: Install and build
+      - name: Build
         run: |
           npm ci
           npm run build
