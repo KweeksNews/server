@@ -22,8 +22,7 @@ jobs:
           cache-dependency-path: "**/package-lock.json"
 
       - name: Install dependencies
-        run: |
-          npm ci
+        run: npm ci
 
       - name: Configure environment variables
         run: |
@@ -34,8 +33,7 @@ jobs:
           SERVERNAME: ${{ secrets.SERVER1_SERVERNAME }}
 
       - name: Build
-        run: |
-          npm run build
+        run: npm run build
 
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.7.0
@@ -43,14 +41,16 @@ jobs:
           ssh-private-key: ${{ secrets.SERVER1_SSH_KEY }}
 
       - name: Add server 1 host key
-        run: ssh-keyscan server1.kweeksnews.com >> ~/.ssh/known_hosts
+        run: ssh-keyscan $HOSTNAME >> ~/.ssh/known_hosts
+        env:
+          HOSTNAME: ${{ secrets.SERVER1_HOSTNAME }}
 
       - name: Deploy
         run: |
-          cd ${{ github.workspace }}/dist
-          git config --global user.email "admin@kweeksnews.com"
-          git config --global user.name "KweeksDev"
-          git init
+          cd dist
+          git init -b main
+          git config --local user.name "KweeksDev"
+          git config --local user.email "admin@kweeksnews.com"
           git add .
           git commit -m "${{ github.event.head_commit.message }}"
           git push -u ssh://kweeksne@server1.kweeksnews.com/home/kweeksne/public_html0 main:main -f
