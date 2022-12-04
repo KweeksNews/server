@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Script from 'next/script';
 import { ReactNode, useCallback, useRef, useState } from 'react';
 import { Config } from '../../config';
 import { useOnClickOutside } from '../../hooks';
@@ -62,21 +61,6 @@ export function Layout({ title, description, image, url, navLinks, manifest, chi
 
         {manifest && <link rel="manifest" href="/manifest.json" />}
       </Head>
-
-      <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-07GPLW9F8C"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag('js', new Date());
-          gtag('config', 'G-07GPLW9F8C');
-        `}
-      </Script>
 
       <a
         href="#content"
