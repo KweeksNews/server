@@ -54,12 +54,28 @@ export function Layout({ title, description, image, url, navLinks, manifest, chi
         <meta name="twitter:creator" content={seo.twitter} />
         <meta name="twitter:site" content={seo.twitter} />
 
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" href={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/favicon.ico`} />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/favicon-16x16.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/favicon-32x32.png`}
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/apple-touch-icon.png`}
+        />
 
-        {manifest && <link rel="manifest" href="/manifest.json" />}
+        {manifest && (
+          <link rel="manifest" href={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/manifest.json`} />
+        )}
       </Head>
 
       <a

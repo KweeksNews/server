@@ -29,7 +29,7 @@ export function Content({ statusCode, statusMessage, navLinks }: Props) {
       <div className="md:flex-1 text-center">
         <Image
           className="mx-auto"
-          src="/assets/images/kweeksnews-network.svg"
+          src={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/assets/images/kweeksnews-network.svg`}
           alt="KweeksNews Network"
           title="KweeksNews Network"
           width={260.122}
@@ -60,7 +60,7 @@ export function Content({ statusCode, statusMessage, navLinks }: Props) {
       <div className="md:flex-1">
         <div className="flex h-[350px] max-w-md items-center mx-auto mt-28 md:mt-0">
           <Image
-            src="/assets/images/lost.svg"
+            src={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/assets/images/lost.svg`}
             alt="Lost"
             width={885.20079}
             height={708.31655}
