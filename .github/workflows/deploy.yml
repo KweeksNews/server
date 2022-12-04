@@ -4,7 +4,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy-server-1:
@@ -12,29 +12,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2.3.4
-        with:
-          fetch-depth: "1"
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2.4.0
+        uses: actions/setup-node@v3
         with:
-          node-version: "14"
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
-      - name: Cache dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Configure environment variables
+        run: |
+          echo "NEXT_PUBLIC_HOSTNAME=$HOSTNAME" >> .env
+          echo "NEXT_PUBLIC_SERVERNAME=$SERVERNAME" >> .env
+        env:
+          HOSTNAME: ${{ secrets.SERVER1_HOSTNAME }}
+          SERVERNAME: ${{ secrets.SERVER1_SERVERNAME }}
 
       - name: Build
         run: |
-          npm ci
           npm run build
 
       - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.SERVER1_SSH_KEY }}
 
@@ -49,4 +53,4 @@ jobs:
           git init
           git add .
           git commit -m "${{ github.event.head_commit.message }}"
-          git push -u ssh://kweeksne@server1.kweeksnews.com/home/kweeksne/public_html0 master:master -f
+          git push -u ssh://kweeksne@server1.kweeksnews.com/home/kweeksne/public_html0 main:main -f
