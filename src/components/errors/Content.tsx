@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 type Props = {
@@ -12,14 +11,13 @@ type Props = {
 };
 
 export function Content({ statusCode, statusMessage, navLinks }: Props) {
-  const router = useRouter();
   const [timeLeft, setTimeLeft] = useState(5);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (timeLeft == 0) {
         clearTimeout(timer);
-        router.push('/');
+        window.location.replace('/');
       } else {
         setTimeLeft(timeLeft - 1);
       }
