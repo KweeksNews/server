@@ -14,11 +14,10 @@ type Props = {
     name: string;
     url: string;
   }[];
-  manifest?: boolean;
   children?: ReactNode;
 };
 
-export function Layout({ title, description, image, url, navLinks, manifest, children }: Props) {
+export function Layout({ title, description, image, url, navLinks, children }: Props) {
   const seo = {
     url: url ?? Config.site.url + '/',
     title: title ?? Config.site.title,
@@ -72,10 +71,6 @@ export function Layout({ title, description, image, url, navLinks, manifest, chi
           sizes="180x180"
           href={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/apple-touch-icon.png`}
         />
-
-        {manifest && (
-          <link rel="manifest" href={`https://${process.env.NEXT_PUBLIC_HOSTNAME}/manifest.json`} />
-        )}
       </Head>
 
       <a

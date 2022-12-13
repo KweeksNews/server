@@ -4,7 +4,7 @@ import { Content } from '../components/home';
 
 export default function Home() {
   return (
-    <Layout manifest={true} navLinks={Config.nav}>
+    <Layout navLinks={Config.nav}>
       <Content navLinks={Config.nav} />
     </Layout>
   );
