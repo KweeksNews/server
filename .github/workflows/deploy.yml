@@ -7,8 +7,22 @@ on:
       - main
 
 jobs:
-  deploy-server-1:
-    name: Deploy to Server 1
+  deploy-server:
+    strategy:
+      matrix:
+        include:
+          - servername: SERVER1_SERVERNAME
+            hostname: SERVER1_HOSTNAME
+            username: SERVER1_USERNAME
+            port: SERVER1_PORT
+            ssh_key: SERVER1_SSH_KEY
+    env:
+      SERVERNAME: ${{ secrets[matrix.servername] }}
+      HOSTNAME: ${{ secrets[matrix.hostname] }}
+      USERNAME: ${{ secrets[matrix.username] }}
+      PORT: ${{ secrets[matrix.port] }}
+      SSH_KEY: ${{ secrets[matrix.ssh_key] }}
+    name: Deploy to Server
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -28,9 +42,6 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_HOSTNAME=$HOSTNAME" >> .env
           echo "NEXT_PUBLIC_SERVERNAME=$SERVERNAME" >> .env
-        env:
-          HOSTNAME: ${{ secrets.SERVER1_HOSTNAME }}
-          SERVERNAME: ${{ secrets.SERVER1_SERVERNAME }}
 
       - name: Build
         run: npm run build
@@ -38,12 +49,10 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.7.0
         with:
-          ssh-private-key: ${{ secrets.SERVER1_SSH_KEY }}
+          ssh-private-key: ${{ env.SSH_KEY }}
 
       - name: Add server 1 host key
-        run: ssh-keyscan $HOSTNAME >> ~/.ssh/known_hosts
-        env:
-          HOSTNAME: ${{ secrets.SERVER1_HOSTNAME }}
+        run: ssh-keyscan -p $PORT $HOSTNAME >> ~/.ssh/known_hosts
 
       - name: Deploy
         run: |
@@ -53,4 +62,4 @@ jobs:
           git config --local user.email "admin@kweeksnews.com"
           git add .
           git commit -m "${{ github.event.head_commit.message }}"
-          git push -u ssh://kweeksne@server1.kweeksnews.com/home/kweeksne/public_html0 main:main -f
+          git push -u ssh://$USERNAME@$HOSTNAME:$PORT/home/$USERNAME/public_html0 main:main -f
